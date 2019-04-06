@@ -38,11 +38,16 @@ public class BootStrapData implements CommandLineRunner{
 		SongInfo sInfo1 = new SongInfo("No Manners", "Teyana Taylor", 120, "K.T.S.E", "R&B");
 		songInfoRepo.save(sInfo1);
 		
+		SongInfo sInfo2 = new SongInfo("Ticket to Ride", "The Beatles", 183, "Help!", "Rock");
+		songInfoRepo.save(sInfo2);
+		
 		//playlist to test
 		Playlist p1 = new Playlist();
 		System.out.println("p1 has id -> " + p1.getId());
+		Playlist p2 = new Playlist();
 		
 		Song s1 = new Song(sInfo1, p1);
+		Song s2 = new Song(sInfo2, p2);
 		
 		p1.setCreator(u1);
 		p1.setTitle("best r&b songs");
@@ -50,6 +55,9 @@ public class BootStrapData implements CommandLineRunner{
 		playlistRepo.save(p1);
 		System.out.println("p1 has id -> " + p1.getId());
 		
+		p2.setCreator(u1);
+		p2.setTitle("Oldies");
+		playlistRepo.save(p2);
 		
 		System.out.println("s1 has id -> " + s1.getId());
 		System.out.println("s1 has title -> " + s1.getTitle());
@@ -58,8 +66,10 @@ public class BootStrapData implements CommandLineRunner{
 		
 		songRepo.save(s1);
 		System.out.println("s1 has id -> " + s1.getId());
+		songRepo.save(s2);
 		
 		p1.addSong(s1);			
+		p2.addSong(s2);
 	}
 	
 }

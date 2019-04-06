@@ -26,8 +26,9 @@ public class UserController {
 	private PlaylistService playlistService;
 	
 	//constructor for this controller class
-	public UserController(UserService userService) {
+	public UserController(UserService userService, PlaylistService playlistService) {
 		this.userService = userService;
+		this.playlistService = playlistService;
 	}
 	
 	@GetMapping("/{userName}")
