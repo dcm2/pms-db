@@ -1,5 +1,7 @@
 package project.service.implementation;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,11 @@ public class PlaylistServiceImplementation implements PlaylistService{
 	@Override
 	public Playlist findByTitle(String title) {
 		return playlistRepo.findByTitle(title);
+	}
+	
+	@Override
+	public List<Playlist> findByUserid(Long id) {
+		return playlistRepo.findByUserid(id);
 	}
 	
 	
