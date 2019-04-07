@@ -24,6 +24,7 @@ public class PlaylistServiceImplementation implements PlaylistService{
 	
 	@Override
 	public Playlist save(Playlist playlist) {
+		System.out.println("playlist: " + playlist.getTitle() + ", has been saved correctly");
 		return playlistRepo.save(playlist);
 	}
 	

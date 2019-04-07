@@ -68,6 +68,7 @@ public class UserController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Playlist savePlaylist(@RequestBody Playlist playlist, @PathVariable String userName) {
 		playlist.setCreator(userService.findByName(userName));
+		userService.findByName(userName).addPlaylist(playlist);
 		return playlistService.save(playlist);
 	}
 		
