@@ -15,6 +15,7 @@ import project.service.UserService;
 import project.entities.Playlist;
 import project.entities.Song;
 import project.entities.User;
+import project.entities.Vote;
 import project.service.PlaylistService;
 
 @RestController
@@ -120,26 +121,30 @@ public class UserController {
 	// finds the correct song in the playlist and changes both the total votes and up-/downvotes
 	@PostMapping(path = "/{userName}/playlists/{playlistTitle}/songs/{songTitle}", consumes = "application/json")
 	@ResponseStatus(HttpStatus.CREATED)
-	public String voteSong(@RequestBody int vote, @PathVariable String userName, @PathVariable String playlistTitle, @PathVariable String songTitle) {
+	public Song voteSong(@RequestBody Vote vote, @PathVariable String userName, @PathVariable String playlistTitle, @PathVariable String songTitle) {
 		User user = userService.findByName(userName);
 		Playlist playlist = playlistService.findByTitle(playlistTitle);
 		List<Song> songList = playlist.getSongList();
 		
+		System.out.println("The vote has been received! You want to set: " + vote.getMyVote() + " to the song: " + songTitle + " in playlist: " + playlistTitle);
+		
+		Song song = new Song();
 		for (int i = 0; i < songList.size(); i++) {
+			song = songList.get(i);
 			// if the song was found by title
-			if (songList.get(i).getTitle().equals(songTitle)) {
+			if (song.getTitle().equals(songTitle)) {
 				// update the total votes regarding the new vote
-				songList.get(i).setVotes(songList.get(i).getUpVotes()+vote);
+				song.setVotes(song.getUpVotes() + vote.getMyVote());
 			}
 			// if upvote, update upvotes, otherwise update downvotes
-			if (vote == 1) {
-				songList.get(i).setUpVotes(songList.get(i).getUpVotes()+vote);
+			if (vote.getMyVote() == 1) {
+				song.setUpVotes(song.getUpVotes() + vote.getMyVote());
 			}
 			else {
-				songList.get(i).setDownVotes(songList.get(i).getDownVotes()+vote);
+				song.setDownVotes(song.getDownVotes() + vote.getMyVote());
 			}
 		}
-		return songTitle;
+		return song;
 	}
 	
 }
