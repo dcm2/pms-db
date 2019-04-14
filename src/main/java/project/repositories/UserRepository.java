@@ -13,7 +13,6 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	// Deletes a User from the db
 	void delete(User user);
 	
-	
 	// To look for a user by its name
 	@Query(value= "SELECT p FROM User p WHERE p.userName = ?1")
 	User findByName(String userName);
@@ -21,7 +20,5 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	// To find the password of a particular user
 	@Query(value= "SELECT p.password FROM User p WHERE p.userName = ?1")
 	String findUserPw(String userName);
-	
-	
 	
 }

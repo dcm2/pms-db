@@ -37,6 +37,7 @@ public class UserController {
 		return userService.findByName(userName);
 	}
 
+	// saving a user
 	@PostMapping(consumes = "application/json")
 	@ResponseStatus(HttpStatus.CREATED)
 	public User saveUser(@RequestBody User user) {
@@ -89,7 +90,6 @@ public class UserController {
 		User user = userService.findByName(userName);
 		List <Playlist> userPlaylists = user.getPlaylists();
 		Playlist playlist = new Playlist();
-		//Playlist playlist = playlistService.findByTitle(playlistName);
 		
 		for (int i = 0; i < userPlaylists.size(); i++) {
 			if (userPlaylists.get(i).getTitle().equals(playlistName)) {
@@ -110,11 +110,7 @@ public class UserController {
 		if (inPlaylist == false) {
 			playlist.addSong(song);
 		}
-		/*System.out.println("what's in the list");
-		List <Song> testList = playlist.getSongList();
-		for (int i = 0; i < testList.size(); i++) {
-			System.out.println(testList.get(i).getTitle());
-		}*/
+		
 		return playlist;
 	}
 	

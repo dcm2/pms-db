@@ -24,12 +24,6 @@ public class SongController {
 		this.songService = songService;
 	}
 	
-	// Finding all song titles
-	/*@GetMapping
-	public List<String> getAllSongs() {
-		return songService.findAllSongs();
-	}*/
-	
 	// Finding all songs
 	@GetMapping
 	public List<Song> listAllSongs() {

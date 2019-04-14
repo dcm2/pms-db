@@ -34,7 +34,7 @@ public class User {
 	
 	@NotNull(message="Password cannot be empty")
 	@Pattern(regexp="\\S+", message="Your password cannot contain blank spaces")
-	@Size(min=8, max=15, message="Password must be between 8 and 20 characters long")
+	@Size(min=8, max=20, message="Password must be between 8 and 20 characters long")
 	private String password;
 	
 	@NotNull(message="Email cannot be empty")

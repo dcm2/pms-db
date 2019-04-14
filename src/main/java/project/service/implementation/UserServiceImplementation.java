@@ -57,7 +57,6 @@ public class UserServiceImplementation implements UserService{
 			String pwInDB = userRepo.findUserPw(prospectiveUserName);
 			return prospectivePw.equals(pwInDB);
 		}
-		
 		return false;
 	}
 	

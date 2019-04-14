@@ -25,6 +25,4 @@ public interface SongRepository extends JpaRepository<Song, Long>{
 	@Query(value= "SELECT p FROM Song p")
 	List <Song> findAllSongs();
 	
-	
-	
 }

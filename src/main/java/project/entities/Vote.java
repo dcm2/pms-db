@@ -33,7 +33,4 @@ public class Vote {
 		this.myVote = myVote;
 	}
 	
-	
-	
-	
 }
